@@ -4,6 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { LuShoppingBag } from "react-icons/lu";
 import { dataContext } from '../context/UserContext';
 import { food_items } from '../food';
+import { useSelector } from 'react-redux';
 function Nav() {
   let { input, setInput, cate, setCate, showCart, setShowCart } = useContext(dataContext);
 
@@ -14,6 +15,8 @@ function Nav() {
     setCate(newlist);
   }, [input]);
 
+    let items = useSelector(state => state.cart);
+    console.log(items)
   return (
     <div className='w-full  h-[100px] flex justify-between p-8'>
       <div className='w-[60px] h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl '>
@@ -32,13 +35,13 @@ function Nav() {
           value={input}
         />
       </form>
-      <div className='w-[60px] h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl relative'
+      <div className='w-[60px] h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl relative cursor-pointer'
         onClick={() => {
           setShowCart(true);
           console.log('clickme ')
         }}>
           
-        <span className='absolute top-0 right-2 text-yellow-500 font-semibold text-[18px]'>0</span>
+        <span className='absolute top-0 right-2 text-yellow-500 font-semibold text-[18px]'>{items.length}</span>
         <LuShoppingBag className='w-[30px] h-[30px] text-yellow-500' />
       </div>
     </div>
