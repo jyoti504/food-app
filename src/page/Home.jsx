@@ -7,6 +7,7 @@ import { dataContext } from '../context/UserContext.jsx';
 import { RxCross2 } from "react-icons/rx";
 import Card2 from '../components/Card2.jsx';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 function Home() {
   const { cate, setCate, input, showCart, setShowCart } = useContext(dataContext);
 
@@ -45,8 +46,7 @@ function Home() {
       </div> : null}
 
       <div className='w-full flex-wrap gap-5 px-5 flex justify-center items-center pt-8 pb-8'>
-        {cate.map((item) => (
-
+        {cate.length>1?        cate.map((item) => (
           <Card
             key={item.food_name}
             id={item.id}
@@ -55,8 +55,8 @@ function Home() {
             price={item.price}
             type={item.food_type}
           />
-
-        ))}
+        )):<div className='text-center text-2xl text-yellow-500 font-semibold'>No dish found</div>}
+ 
       </div>
       <div className={`w-full md:w-[40vw] h-[100%] fixed top-0 right-0 bg-white shadow-xl p-4 
     transition-transform duration-300 flex flex-col items-center overflow-auto
@@ -94,7 +94,9 @@ function Home() {
           <span className='text-2xl text-gray-600 font-semibold '>Total</span>
           <span className='text-yellow-400 font-semibold text-lg'>Rs{total}/-</span>
         </div>
-        <button className='w-[80%] p-3 rounded-lg bg-yellow-300 text-white hover:bg-yellow-200 transition-all' >Place Oreder</button>
+        <button className='w-[80%] p-3 rounded-lg bg-yellow-300 text-white hover:bg-yellow-200 transition-all' onClick={()=>{
+            toast('order placed')
+        }}>Place Oreder</button>
       </div>
     </div>
   );
