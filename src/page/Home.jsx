@@ -22,12 +22,12 @@ function Home() {
   }
   let items = useSelector(state => state.cart);
 
-  let subtotal = items.reduce((total, items) => total + items.qty*items.price, 0)
+  let subtotal = items.reduce((total, items) => total + items.qty * items.price, 0)
   console.log(subtotal);
   let delivaryFee = 20;
   let taxes = subtotal * 0.5 / 100;
   let total = Math.floor(subtotal + delivaryFee + taxes);
-  
+
   return (
     <div className='bg-slate-200 w-full min-h-[100vh]'>
       <Nav />
@@ -55,7 +55,7 @@ function Home() {
             price={item.price}
             type={item.food_type}
           />
- 
+
         ))}
       </div>
       <div className={`w-full md:w-[40vw] h-[100%] fixed top-0 right-0 bg-white shadow-xl p-4 
@@ -90,12 +90,10 @@ function Home() {
             <span className='text-yellow-400 font-semibold text-lg'>Rs{taxes}/-</span>
           </div>
         </div>
-             <div className='w-full flex justify-between items-center p-9 '>
-            <span className='text-2xl text-gray-600 font-semibold '>Total</span>
-            <span className='text-yellow-400 font-semibold text-lg'>Rs{total}/-</span>
-          </div>
-         
-        
+        <div className='w-full flex justify-between items-center p-9 '>
+          <span className='text-2xl text-gray-600 font-semibold '>Total</span>
+          <span className='text-yellow-400 font-semibold text-lg'>Rs{total}/-</span>
+        </div>
         <button className='w-[80%] p-3 rounded-lg bg-yellow-300 text-white hover:bg-yellow-200 transition-all' >Place Oreder</button>
       </div>
     </div>
@@ -105,4 +103,4 @@ function Home() {
 export default Home;
 
 
- 
+
